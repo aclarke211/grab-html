@@ -12,7 +12,7 @@
 </template>
 
 <script>
-const { scrapeSite } = require('@/utils/scraper');
+const { scrapeSite, filterHTML } = require('@/utils/scraper');
 
 export default {
   name: 'Scraper',
@@ -35,6 +35,10 @@ export default {
     scrapeSite(this.currentSiteUrl).then((res) => {
       this.htmlResult = res;
     });
+
+    setTimeout(() => {
+      this.htmlResult = filterHTML(this.htmlResult, '.statsTableContainer > tr');
+    }, 3000);
   },
 };
 </script>
