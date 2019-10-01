@@ -33,12 +33,16 @@ export default {
 
   mounted() {
     scrapeSite(this.currentSiteUrl).then((res) => {
+      this.title = 'Retrieved Full HTML';
       this.htmlResult = res;
-    });
+    })
+      .then(() => {
+        setTimeout(() => {
+          this.title = 'Filtered HTML';
+          this.htmlResult = filterHTML(this.htmlResult, '.statsTableContainer > tr');
+        }, 2000);
+      });
 
-    setTimeout(() => {
-      this.htmlResult = filterHTML(this.htmlResult, '.statsTableContainer > tr');
-    }, 3000);
   },
 };
 </script>
