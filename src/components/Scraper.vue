@@ -32,7 +32,9 @@ export default {
   },
 
   mounted() {
-    scrapeSite(this.currentSiteUrl);
+    scrapeSite(this.currentSiteUrl).then((res) => {
+      this.htmlResult = res;
+    });
   },
 };
 </script>
