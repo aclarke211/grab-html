@@ -3,6 +3,13 @@
     <h3
       :class="`${className}__title`"
       v-html="title" />
+
+      <h1>Store</h1>
+      <h2>{{ $store.state }}</h2>
+      <button
+      @click="() => { $store.commit('toggleCustomConfig') }">Toggle Config</button>
+
+
     <pre
       :class="`${className}__result`">
       {{ htmlResult }}
