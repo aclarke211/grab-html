@@ -1,4 +1,4 @@
-# site-content
+# site-scraper
 
 ## Project setup
 ```
