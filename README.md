@@ -1,5 +1,7 @@
 # site-scraper
 
+Based on the following tutorial: https://pusher.com/tutorials/web-scraper-node
+
 ## Project setup
 ```
 npm install
