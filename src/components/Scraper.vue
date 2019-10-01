@@ -3,7 +3,8 @@
       <h1>Store</h1>
       <h2>{{ $store.state }}</h2>
       <button
-         @click="() => { $store.commit('toggleCustomConfig', !$store.state.useCustomConfig) }">Toggle Config</button>
+         @click="() => {
+        $store.commit('toggleCustomConfig', !$store.state.useCustomConfig) }">Toggle Config</button>
 
     <h3
       :class="`${className}__title`"
