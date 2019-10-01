@@ -7,6 +7,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     useCustomConfig: false,
+    sites: [],
   },
 
   getters: {
@@ -16,6 +17,10 @@ const store = new Vuex.Store({
   mutations: {
     toggleCustomConfig(state, value) {
       state.useCustomConfig = value;
+    },
+
+    addSite(state, site) {
+      state.sites.push(site);
     },
   },
 
