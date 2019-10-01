@@ -14,8 +14,8 @@ const store = new Vuex.Store({
   },
 
   mutations: {
-    toggleCustomConfig(state) {
-      state.useCustomConfig = !state.useCustomConfig;
+    toggleCustomConfig(state, value) {
+      state.useCustomConfig = value;
     },
   },
 
@@ -23,7 +23,7 @@ const store = new Vuex.Store({
 
   },
 
-  plugins: [new VuexPersistence().plugin]
+  plugins: [new VuexPersistence().plugin],
 });
 
 export default store;
