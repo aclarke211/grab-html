@@ -12,7 +12,7 @@
 </template>
 
 <script>
-const axios = require('axios');
+const { scrapeSite } = require('@/utils/scraper');
 
 export default {
   name: 'Scraper',
@@ -25,26 +25,14 @@ export default {
     siteUrl: 'https://www.premierleague.com/stats/top/players/goals?se=-1&cl=-1&iso=-1&po=-1?se=-1',
   }),
 
-  methods: {
-    scrapeSite(url) {
-      axios(`${this.corsProxy}/${url}`)
-        .then((response) => {
-          const html = response.data;
-
-          // eslint-disable-next-line
-          console.log(html);
-        })
-        .catch((err) => {
-          if (err) {
-            // eslint-disable-next-line
-            console.error(err);
-          }
-        });
+  computed: {
+    currentSiteUrl() {
+      return `${this.corsProxy}/${this.siteUrl}`;
     },
   },
 
   mounted() {
-    this.scrapeSite(this.siteUrl);
+    scrapeSite(this.currentSiteUrl);
   },
 };
 </script>
