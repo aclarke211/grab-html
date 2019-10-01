@@ -4,18 +4,18 @@
       :class="`${className}__title`"
       v-html="title" />
 
-      <getHTML />
+      <Scraper />
   </div>
 </template>
 
 <script>
-import getHTML from '@/components/getHTML.vue';
+import Scraper from '@/components/Scraper.vue';
 
 export default {
   name: 'Home',
 
   components: {
-    getHTML,
+    Scraper,
   },
 
   data: () => ({
