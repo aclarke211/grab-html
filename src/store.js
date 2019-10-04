@@ -8,6 +8,7 @@ const store = new Vuex.Store({
   state: {
     useCustomConfig: false,
     sites: [],
+    currentRoute: 'home',
   },
 
   getters: {
@@ -21,6 +22,10 @@ const store = new Vuex.Store({
 
     addSite(state, site) {
       state.sites.push(site);
+    },
+
+    changeRoute(state, route) {
+      state.currentRoute = route;
     },
   },
 

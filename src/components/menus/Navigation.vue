@@ -1,13 +1,13 @@
 <template>
   <div :class="className">
     <div :class="`${className}__links`">
-      <router-link
+      <div
         v-for="(link, linkKey) in links"
         :key="linkKey"
-        :to="{ name: link.route }"
-        :class="[`${className}__link`, {'active': link.route}]">
+        :class="[`${className}__link`, {'active': link.route === $store.state.currentRoute}]"
+        @click="changeRoute(link.route)">
         {{ link.text }}
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -29,6 +29,15 @@ export default {
       },
     ],
   }),
+
+  methods: {
+    changeRoute(route) {
+      this.$store.commit('changeRoute', route);
+      this.$router.push({
+        name: route,
+      });
+    },
+  },
 };
 </script>
 
@@ -38,22 +47,39 @@ export default {
 
   background-color: $nav_backgroundColor;
   padding: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
   &__links {
-    border: 1px solid gainsboro;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   &__link {
-    margin: 1rem;
+    margin: .5rem 1rem;
     color: gainsboro;
     font-size: .85rem;
     text-decoration: none;
     font-weight: 600;
     border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all .5s;
+    text-align: center;
+
+    &:hover {
+      color: whitesmoke;
+    }
 
     &.active {
       color: white;
       border-color: white;
+
+      &:hover {
+        color: white;
+      }
 
     }
   }
