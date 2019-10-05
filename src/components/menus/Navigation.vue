@@ -24,8 +24,8 @@ export default {
         route: 'home',
       },
       {
-        text: 'EDIT STORE',
-        route: 'edit-store',
+        text: 'SETTINGS',
+        route: 'settings',
       },
     ],
   }),

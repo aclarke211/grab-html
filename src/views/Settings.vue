@@ -1,6 +1,6 @@
 <template>
   <div :class="className">
-    Edit Store
+    Settings
 
     <StoreManager />
 
@@ -11,14 +11,14 @@
 import StoreManager from '@/components/StoreManager.vue';
 
 export default {
-  name: 'EditStore',
+  name: 'Settings',
 
   components: {
     StoreManager,
   },
 
   data: () => ({
-    className: 'edit-store',
+    className: 'settings',
   }),
 };
 </script>
