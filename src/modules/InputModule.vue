@@ -10,6 +10,7 @@
         :class="`${className}__input`">
         <input
           :class="`${className}__value`"
+          :id="uniqueId"
           :type="types.boolean"
           v-model="value" >
       </div>
