@@ -3,7 +3,10 @@
     v-if="showModal"
     :class="[`${className}`, `${className}__outer`]"
     @click.self="$emit('modal-outer-clicked')">
-    {{ className }}
+    <div
+      :class="`${className}__inner`">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -26,14 +29,23 @@ export default {
 
 <style lang="scss">
 .modal-module {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0;
-  margin: 0;
-  opacity: .9;
-  background-color: #505050;
+  &__outer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    background-color: #202020f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__inner {
+    background-color: white;
+    padding: 3rem;
+  }
 }
 </style>

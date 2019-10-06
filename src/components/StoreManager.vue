@@ -34,7 +34,9 @@
 
     <ModalModule
       :showModal="showModal"
-      @modal-outer-clicked="showModal = false" />
+      @modal-outer-clicked="showModal = false">
+      <p>MODAL INNER</p>
+    </ModalModule>
   </div>
 </template>
 
