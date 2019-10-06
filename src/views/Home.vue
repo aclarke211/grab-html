@@ -4,7 +4,9 @@
       :class="`${className}__title`"
       v-html="title" />
 
-      <Scraper />
+      <Scraper
+        :siteUrl="$store.state.sites[0].url"
+        :itemsIdentifier="$store.state.sites[0].items.identifier" />
   </div>
 </template>
 

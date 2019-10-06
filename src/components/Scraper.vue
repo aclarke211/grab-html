@@ -18,12 +18,23 @@ const { scrapeSite, filterHTML } = require('@/utils/scraper');
 export default {
   name: 'Scraper',
 
+  props: {
+    siteUrl: {
+      type: String,
+      default: 'https://www.premierleague.com/stats/top/players/goals?se=-1&cl=-1&iso=-1&po=-1?se=-1',
+    },
+
+    itemsIdentifier: {
+      type: String,
+      default: '.statsTableContainer > tr',
+    },
+  },
+
   data: () => ({
     className: 'scraper',
     title: 'Get HTML',
     htmlResult: '',
     corsProxy: 'https://cors-anywhere.herokuapp.com',
-    siteUrl: 'https://www.premierleague.com/stats/top/players/goals?se=-1&cl=-1&iso=-1&po=-1?se=-1',
   }),
 
   computed: {
@@ -40,7 +51,7 @@ export default {
       .then(() => {
         setTimeout(() => {
           this.title = 'Filtered HTML';
-          this.htmlResult = filterHTML(this.htmlResult, '.statsTableContainer > tr');
+          this.htmlResult = filterHTML(this.htmlResult, this.itemsIdentifier);
         }, 2000);
       });
   },
