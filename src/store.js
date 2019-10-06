@@ -7,7 +7,13 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     useCustomConfig: false,
-    sites: [],
+    sites: [
+      {
+        name: 'Sky News',
+        description: 'News stories from the UK and The Rest of the World',
+        icon: './assets/icons/sky-news-icon.png',
+      },
+    ],
     currentRoute: 'home',
   },
 
