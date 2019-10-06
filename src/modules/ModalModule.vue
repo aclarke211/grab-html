@@ -41,11 +41,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all .5s;
   }
 
   &__inner {
     background-color: white;
     padding: 3rem;
+    box-shadow: 1px 1px 3px 2px #3f3f3f;
   }
 }
 </style>
