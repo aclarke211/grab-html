@@ -1,9 +1,9 @@
 <template>
   <div :class="className">
-    Settings
-
+    <h1 :class="`${className}__title`">
+      {{ title }}
+    </h1>
     <StoreManager />
-
   </div>
 </template>
 
@@ -19,10 +19,13 @@ export default {
 
   data: () => ({
     className: 'settings',
+    title: 'Settings',
   }),
 };
 </script>
 
 <style lang="scss">
-
+.settings {
+  padding: 1rem;
+}
 </style>
