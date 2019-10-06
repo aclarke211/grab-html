@@ -1,8 +1,7 @@
 <template>
   <div :class="className">
       <div :class="`${className}__state`">
-        <!-- TEST INPUT MODULE -->
-        <h2>Test Input Module</h2>
+
         <InputModule
           :label="storeItems[0][0]"
           :value="storeItems[0][1]"
@@ -60,10 +59,6 @@ export default {
   },
 
   methods: {
-    toggleConfigClicked() {
-      this.$store.commit('update__useCustomConfig', !this.$store.state.useCustomConfig);
-    },
-
     addSiteClicked() {
       this.$store.commit('addSite', { name: 'Test Site', url: '/test-site' });
     },
