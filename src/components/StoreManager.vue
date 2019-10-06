@@ -1,6 +1,14 @@
 <template>
   <div :class="className">
       <div :class="`${className}__state`">
+        <!-- TEST INPUT MODULE -->
+        <h2>Test Input Module</h2>
+        <InputModule
+          :label="storeItems[0][0]"
+          :value="storeItems[0][1]"
+          @value-changed="updateStore($event)" />
+
+
         <h3
           :class="`${className}__heading`"
           v-html="'State'" />
@@ -21,12 +29,6 @@
         v-html="'Buttons'" />
       <div
         :class="`${className}__btns-container`">
-          <button
-            :class="`${className}__btn`"
-            @click="toggleConfigClicked()">
-            Toggle Config
-          </button>
-
             <button
             :class="`${className}__btn`"
             @click="addSiteClicked()">
@@ -38,8 +40,14 @@
 </template>
 
 <script>
+import InputModule from '@/modules/InputModule.vue';
+
 export default {
   name: 'StoreManager',
+
+  components: {
+    InputModule,
+  },
 
   data: () => ({
     className: 'store-manager',
@@ -53,11 +61,15 @@ export default {
 
   methods: {
     toggleConfigClicked() {
-      this.$store.commit('toggleCustomConfig', !this.$store.state.useCustomConfig);
+      this.$store.commit('update_useCustomConfig', !this.$store.state.useCustomConfig);
     },
 
     addSiteClicked() {
       this.$store.commit('addSite', { name: 'Test Site', url: '/test-site' });
+    },
+
+    updateStore(emitEvent) {
+      this.$store.commit(`update_${emitEvent.key}`, emitEvent.value);
     },
   },
 };

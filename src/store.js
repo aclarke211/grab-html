@@ -16,7 +16,7 @@ const store = new Vuex.Store({
   },
 
   mutations: {
-    toggleCustomConfig(state, value) {
+    update_useCustomConfig(state, value) {
       state.useCustomConfig = value;
     },
 
