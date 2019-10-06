@@ -32,7 +32,7 @@ export default {
 
   methods: {
     changeRoute(route) {
-      this.$store.commit('changeRoute', route);
+      this.$store.commit('update__currentRoute', route);
       this.$router.push({
         name: route,
       });

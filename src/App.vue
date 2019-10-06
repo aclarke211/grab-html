@@ -18,6 +18,13 @@ export default {
   data: () => ({
     id: 'app',
   }),
+
+  created() {
+    this.$store.commit('update__currentRoute', 'home');
+    this.$router.push({
+      name: 'home',
+    });
+  },
 };
 </script>
 

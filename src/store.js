@@ -16,7 +16,7 @@ const store = new Vuex.Store({
   },
 
   mutations: {
-    update_useCustomConfig(state, value) {
+    update__useCustomConfig(state, value) {
       state.useCustomConfig = value;
     },
 
@@ -24,7 +24,7 @@ const store = new Vuex.Store({
       state.sites.push(site);
     },
 
-    changeRoute(state, route) {
+    update__currentRoute(state, route) {
       state.currentRoute = route;
     },
   },

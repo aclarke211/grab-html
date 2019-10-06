@@ -61,7 +61,7 @@ export default {
 
   methods: {
     toggleConfigClicked() {
-      this.$store.commit('update_useCustomConfig', !this.$store.state.useCustomConfig);
+      this.$store.commit('update__useCustomConfig', !this.$store.state.useCustomConfig);
     },
 
     addSiteClicked() {
@@ -69,7 +69,7 @@ export default {
     },
 
     updateStore(emitEvent) {
-      this.$store.commit(`update_${emitEvent.key}`, emitEvent.value);
+      this.$store.commit(`update__${emitEvent.key}`, emitEvent.value);
     },
   },
 };
