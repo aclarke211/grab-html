@@ -1,17 +1,20 @@
 <template>
   <div :class="className">
-    <h2
-      :class="`${className}__title`"
-      v-html="title" />
-    <p
-      :class="`${className}__description`"
-      v-html="description" />
-
-      <h3
-        :class="`${className}__heading`"
-        v-html="'VueX Store Tree'" />
-      <pre
-        :class="`${className}__store-tree`">{{ storeTree }}</pre>
+      <div :class="`${className}__state`">
+        <h3
+          :class="`${className}__heading`"
+          v-html="'State'" />
+        <div
+          class="store-items">
+            <div
+              v-for="(storeItem, storeItemKey) in storeItems"
+              :key="storeItemKey"
+              class="store-item">
+              <div class="store-item__key">{{ storeItem[0] }}</div>
+              <div class="store-items__value">{{ storeItem[1] }}</div>
+            </div>
+        </div>
+      </div>
 
       <h3
         :class="`${className}__heading`"
@@ -40,13 +43,11 @@ export default {
 
   data: () => ({
     className: 'store-manager',
-    title: 'VueX Store Manager',
-    description: 'Used to manage properties in the VueX Store / localstorage.',
   }),
 
   computed: {
-    storeTree() {
-      return this.$store.state;
+    storeItems() {
+      return Object.entries(this.$store.state);
     },
   },
 
@@ -64,7 +65,7 @@ export default {
 
 <style lang="scss">
 .store-manager {
-  margin: 4rem;
+  margin: 2rem;
 
   &__title {
     font-size: 2rem;
@@ -78,6 +79,32 @@ export default {
   &__heading {
     font-size: 1.5rem;
     margin: 2rem 0 .25rem 0;
+  }
+
+  .store-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .store-item {
+      display: flex;
+      flex-flow: row wrap;
+      margin: .5rem 0;
+
+      &__key {
+        font-weight: 600;
+
+        &::after {
+          content: ':';
+          margin-right: .5rem;
+        }
+      }
+
+      &__value {
+        font-weight: 400;
+      }
+    }
   }
 
   &__store-tree {
