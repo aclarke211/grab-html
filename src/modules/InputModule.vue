@@ -9,21 +9,32 @@
         v-if="inputType === types.string"
         :class="[`${className}__input`, `${className}__input--${inputType}`]">
         <input
+          v-if="editable"
           :class="`${className}__value`"
           :id="uniqueId"
           :type="types.string"
-          v-model="value"
-        >
+          v-model="value">
+
+          <p
+            v-if="!editable"
+            :class="`${className}__text`"
+            v-html="value" />
       </div>
 
       <div
         v-if="inputType === types.boolean"
         :class="[`${className}__input`, `${className}__input--${inputType}`]">
         <input
+          v-if="editable"
           :class="`${className}__value`"
           :id="uniqueId"
           :type="types.boolean"
           v-model="value" >
+
+          <p
+            v-if="!editable"
+            :class="`${className}__text`"
+            v-html="value" />
       </div>
 
       <div
@@ -57,6 +68,11 @@ export default {
     direction: {
       type: String,
       default: 'horizontal',
+    },
+
+    editable: {
+      type: Boolean,
+      default: true,
     },
   },
 

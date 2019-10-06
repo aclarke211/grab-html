@@ -1,51 +1,35 @@
 <template>
   <div :class="className">
-      <div :class="`${className}__state`">
+    <div :class="`${className}__state`">
+      <InputModule
+        :label="findPropertyInStore('useCustomConfig', 'key').key"
+        :value="findPropertyInStore('useCustomConfig', 'key').value"
+        @value-changed="updateStore($event)" />
 
-        <InputModule
-          :label="findPropertyInStore('useCustomConfig', 'key').key"
-          :value="findPropertyInStore('useCustomConfig', 'key').value"
-          @value-changed="updateStore($event)" />
+      <InputModule
+        :label="findPropertyInStore('sites', 'key').key"
+        :value="findPropertyInStore('sites', 'key').value"
+        @value-changed="updateStore($event)" />
 
-        <InputModule
-          :label="findPropertyInStore('sites', 'key').key"
-          :value="findPropertyInStore('sites', 'key').value"
-          @value-changed="updateStore($event)" />
+      <InputModule
+        :label="findPropertyInStore('currentRoute', 'key').key"
+        :value="findPropertyInStore('currentRoute', 'key').value"
+        :editable="false"
+        @value-changed="updateStore($event)"
+      />
+    </div>
 
-        <InputModule
-          :label="findPropertyInStore('currentRoute', 'key').key"
-          :value="findPropertyInStore('currentRoute', 'key').value"
-          @value-changed="updateStore($event)"
-        />
-
-
-        <h3
-          :class="`${className}__heading`"
-          v-html="'State'" />
-        <div
-          class="store-items">
-            <div
-              v-for="(storeItem, storeItemKey) in storeItems"
-              :key="storeItemKey"
-              class="store-item">
-              <div class="store-item__key">{{ storeItem[0] }}</div>
-              <div class="store-items__value">{{ storeItem[1] }}</div>
-            </div>
-        </div>
-      </div>
-
-      <h3
-        :class="`${className}__heading`"
-        v-html="'Buttons'" />
-      <div
-        :class="`${className}__btns-container`">
-            <button
-            :class="`${className}__btn`"
-            @click="addSiteClicked()">
-            Add Site
-          </button>
-      </div>
-
+    <h3
+      :class="`${className}__heading`"
+      v-html="'Buttons'" />
+    <div
+      :class="`${className}__btns-container`">
+          <button
+          :class="`${className}__btn`"
+          @click="addSiteClicked()">
+          Add Site
+        </button>
+    </div>
   </div>
 </template>
 
@@ -116,36 +100,6 @@ export default {
   &__heading {
     font-size: 1.5rem;
     margin: 2rem 0 .25rem 0;
-  }
-
-  .store-items {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    .store-item {
-      display: flex;
-      flex-flow: row wrap;
-      margin: .5rem 0;
-
-      &__key {
-        font-weight: 600;
-
-        &::after {
-          content: ':';
-          margin-right: .5rem;
-        }
-      }
-
-      &__value {
-        font-weight: 400;
-      }
-    }
-  }
-
-  &__store-tree {
-    font-size: 1.25rem;
   }
 
   &__btns-container {
