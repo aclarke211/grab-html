@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div :class="[className, direction]">
     <label
       :class="`${className}__label`"
       :for="uniqueId"
@@ -30,6 +30,11 @@ export default {
     value: {
       type: [Boolean, String, Object, Array],
       default: true,
+    },
+
+    direction: {
+      type: String,
+      default: 'horizontal',
     },
   },
 
@@ -65,3 +70,27 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.input-module {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &.horizontal {
+    flex-flow: row wrap;
+  }
+
+  &.vertical {
+    flex-flow: column wrap;
+    align-items: flex-start;
+  }
+
+  &__label {
+    &::after {
+      content: ':';
+      margin-right: 1rem;
+    }
+  }
+}
+</style>
