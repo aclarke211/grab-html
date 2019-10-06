@@ -11,6 +11,7 @@ const store = new Vuex.Store({
       {
         name: 'Sky News',
         description: 'News stories from the UK and The Rest of the World',
+        url: 'https://news.sky.com/',
         icon: './assets/icons/sky-news-icon.png',
       },
     ],

@@ -6,13 +6,35 @@
       v-html="label"/>
 
       <div
+        v-if="inputType === types.string"
+        :class="[`${className}__input`, `${className}__input--${inputType}`]">
+        <input
+          :class="`${className}__value`"
+          :id="uniqueId"
+          :type="types.string"
+          v-model="value"
+        >
+      </div>
+
+      <div
         v-if="inputType === types.boolean"
-        :class="`${className}__input`">
+        :class="[`${className}__input`, `${className}__input--${inputType}`]">
         <input
           :class="`${className}__value`"
           :id="uniqueId"
           :type="types.boolean"
           v-model="value" >
+      </div>
+
+      <div
+        v-if="inputType === types.array"
+        :class="[`${className}__input`, `${className}__input--${inputType}`]">
+          <div
+            :class="`${className}__input--array`"
+            v-for="(property, propertyKey) in this.value"
+            :key="propertyKey">
+            {{ property }}
+            </div>
       </div>
   </div>
 </template>
@@ -45,6 +67,10 @@ export default {
     },
 
     valueType() {
+      if (Array.isArray(this.value)) {
+        return 'array';
+      }
+
       return typeof this.value;
     },
 
@@ -57,6 +83,8 @@ export default {
     className: 'input-module',
     types: {
       boolean: 'checkbox',
+      array: 'array',
+      string: 'text',
     },
   }),
 
@@ -73,6 +101,7 @@ export default {
 
 <style lang="scss">
 .input-module {
+  margin: 1rem 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;

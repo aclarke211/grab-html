@@ -7,6 +7,17 @@
           :value="findPropertyInStore('useCustomConfig', 'key').value"
           @value-changed="updateStore($event)" />
 
+        <InputModule
+          :label="findPropertyInStore('sites', 'key').key"
+          :value="findPropertyInStore('sites', 'key').value"
+          @value-changed="updateStore($event)" />
+
+        <InputModule
+          :label="findPropertyInStore('currentRoute', 'key').key"
+          :value="findPropertyInStore('currentRoute', 'key').value"
+          @value-changed="updateStore($event)"
+        />
+
 
         <h3
           :class="`${className}__heading`"
