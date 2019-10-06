@@ -31,21 +31,28 @@
           Add Site
         </button>
     </div>
+
+    <ModalModule
+      :showModal="showModal"
+      @modal-outer-clicked="showModal = false" />
   </div>
 </template>
 
 <script>
 import InputModule from '@/modules/InputModule.vue';
+import ModalModule from '@/modules/ModalModule.vue';
 
 export default {
   name: 'StoreManager',
 
   components: {
     InputModule,
+    ModalModule,
   },
 
   data: () => ({
     className: 'store-manager',
+    showModal: false,
   }),
 
   computed: {
@@ -56,7 +63,9 @@ export default {
 
   methods: {
     addSiteClicked() {
-      this.$store.commit('addSite', { name: 'Test Site', url: '/test-site' });
+      // this.$store.commit('addSite', { name: 'Test Site', url: '/test-site' });
+
+      this.showModal = true;
     },
 
     updateStore(emitEvent) {
