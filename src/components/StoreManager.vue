@@ -3,8 +3,8 @@
       <div :class="`${className}__state`">
 
         <InputModule
-          :label="storeItems[0][0]"
-          :value="storeItems[0][1]"
+          :label="findPropertyInStore('useCustomConfig', 'key').key"
+          :value="findPropertyInStore('useCustomConfig', 'key').value"
           @value-changed="updateStore($event)" />
 
 
@@ -65,6 +65,25 @@ export default {
 
     updateStore(emitEvent) {
       this.$store.commit(`update__${emitEvent.key}`, emitEvent.value);
+    },
+
+    findPropertyInStore(property, type) {
+      let propertyType;
+
+      if (type === 'key') {
+        propertyType = 0;
+      }
+
+      if (type === 'value') {
+        propertyType = 1;
+      }
+
+      const filteredItem = this.storeItems.filter(item => item[propertyType] === property);
+
+      return {
+        key: filteredItem[0][0],
+        value: filteredItem[0][1],
+      };
     },
   },
 };
