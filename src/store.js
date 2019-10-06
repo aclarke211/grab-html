@@ -34,6 +34,10 @@ const store = new Vuex.Store({
       state.sites.push(site);
     },
 
+    removeArrayItem(state, arrayDetails) {
+      state[arrayDetails.array].splice(arrayDetails.index, 1);
+    },
+
     update__currentRoute(state, route) {
       state.currentRoute = route;
     },

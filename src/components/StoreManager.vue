@@ -9,7 +9,8 @@
       <InputModule
         :label="findPropertyInStore('sites', 'key').key"
         :value="findPropertyInStore('sites', 'key').value"
-        @value-changed="updateStore($event)" />
+        @value-changed="updateStore($event)"
+        @remove-array-item="removeArrayItemFromStore($event)" />
 
       <InputModule
         :label="findPropertyInStore('currentRoute', 'key').key"
@@ -60,6 +61,10 @@ export default {
 
     updateStore(emitEvent) {
       this.$store.commit(`update__${emitEvent.key}`, emitEvent.value);
+    },
+
+    removeArrayItemFromStore(emitEvent) {
+      this.$store.commit('removeArrayItem', emitEvent);
     },
 
     findPropertyInStore(property, type) {

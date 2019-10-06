@@ -7,7 +7,7 @@
 
       <div
         v-if="inputType === types.string"
-        :class="[`${className}__input`, `${className}__input--${inputType}`]">
+        :class="[`${className}__input`, `${className}__input__${inputType}`]">
         <input
           v-if="editable"
           :class="`${className}__value`"
@@ -23,7 +23,7 @@
 
       <div
         v-if="inputType === types.boolean"
-        :class="[`${className}__input`, `${className}__input--${inputType}`]">
+        :class="[`${className}__input`, `${className}__input__${inputType}`]">
         <input
           v-if="editable"
           :class="`${className}__value`"
@@ -39,12 +39,21 @@
 
       <div
         v-if="inputType === types.array"
-        :class="[`${className}__input`, `${className}__input--${inputType}`]">
+        :class="[`${className}__input`, `${className}__input__${inputType}`]">
           <div
-            :class="`${className}__input--array`"
+            :class="`${className}__input__array-item`"
             v-for="(property, propertyKey) in this.value"
             :key="propertyKey">
-            {{ property }}
+            <p :class="`${className}__input__text`">{{ property }}</p>
+            <div
+              :class="`${className}__input__delete-btn`"
+              title="Delete"
+              v-html="'&#215;'"
+              @click="$emit('remove-array-item', {
+                array: 'sites',
+                index: propertyKey,
+                property: property,
+              })" />
             </div>
       </div>
   </div>
@@ -135,6 +144,34 @@ export default {
     &::after {
       content: ':';
       margin-right: 1rem;
+    }
+  }
+
+  &__input {
+    &__array {
+      display: flex;
+      align-items: flex-start;
+      flex-flow: column wrap;
+
+      &-item {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    &__text {
+      margin-right: 1rem;
+    }
+
+    &__delete-btn {
+      color: silver;
+      font-size: 1.75rem;
+      cursor: pointer;
+      transition: .5s;
+
+      &:hover {
+        color: red;
+      }
     }
   }
 }
