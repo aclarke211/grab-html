@@ -82,7 +82,7 @@ export default {
 
       this.modalDetails.title = 'Manage Sites';
       this.modalDetails.html = `
-        How would you like to manage the sites?.
+        How would you like to manage the sites?
       `;
       this.modalDetails.buttonsDirection = 'vertical';
       this.modalDetails.buttons = [
