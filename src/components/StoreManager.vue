@@ -34,7 +34,8 @@
 
     <ModalModule
       :showModal="showModal"
-      @modal-outer-clicked="showModal = false">
+      @modal-outer-clicked="showModal = false"
+      @modal-close-clicked="showModal = false">
       <div
         v-if="modalHtml"
         class="modal-slot"

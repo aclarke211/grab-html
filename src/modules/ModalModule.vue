@@ -5,6 +5,10 @@
     @click.self="$emit('modal-outer-clicked')">
     <div
       :class="`${className}__inner`">
+      <div
+        :class="`${className}__close-btn`"
+        v-html="closeButton"
+        @click.self="$emit('modal-close-clicked')" />
       <slot />
     </div>
   </div>
@@ -18,6 +22,11 @@ export default {
     showModal: {
       type: Boolean,
       default: false,
+    },
+
+    closeButton: {
+      type: String,
+      default: '&#215;',
     },
   },
 
@@ -47,7 +56,26 @@ export default {
   &__inner {
     background-color: white;
     padding: 3rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-shadow: 1px 1px 3px 2px #3f3f3f;
+  }
+
+  &__close-btn {
+    font-size: 2rem;
+    color: darkgrey;
+    transition: all .5s;
+    position: absolute;
+    top: .5rem;
+    right: .75rem;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.15);
+      color: grey;
+    }
   }
 
   &__title {
@@ -55,6 +83,7 @@ export default {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0 1rem 1rem;
+    text-align: center;
   }
 }
 </style>
