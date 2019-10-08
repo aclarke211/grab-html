@@ -49,5 +49,12 @@ export default {
     padding: 3rem;
     box-shadow: 1px 1px 3px 2px #3f3f3f;
   }
+
+  &__title {
+    border-bottom: 2px solid black;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 1rem 1rem;
+  }
 }
 </style>

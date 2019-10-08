@@ -35,7 +35,10 @@
     <ModalModule
       :showModal="showModal"
       @modal-outer-clicked="showModal = false">
-      <p>MODAL INNER</p>
+      <div
+        v-if="modalHtml"
+        class="modal-slot"
+        v-html="modalHtml" />
     </ModalModule>
   </div>
 </template>
@@ -55,6 +58,7 @@ export default {
   data: () => ({
     className: 'store-manager',
     showModal: false,
+    modalHtml: '',
   }),
 
   computed: {
@@ -66,6 +70,10 @@ export default {
   methods: {
     addSiteClicked() {
       // this.$store.commit('addSite', { name: 'Test Site', url: '/test-site' });
+
+      this.modalHtml = `
+        <div class="modal-module__title">Modal Title</div>
+      `;
 
       this.showModal = true;
     },
