@@ -22,7 +22,7 @@
 
     <h3
       :class="`${className}__heading`"
-      v-html="'Buttons'" />
+      v-html="'Options'" />
     <div
       :class="`${className}__btns-container`">
           <button
