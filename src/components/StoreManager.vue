@@ -27,19 +27,22 @@
       :class="`${className}__btns-container`">
           <button
           :class="`${className}__btn`"
-          @click="addSiteClicked()">
-          Add Site
+          @click="manageSitesClicked()">
+          Manage Sites
         </button>
     </div>
 
     <ModalModule
       :showModal="showModal"
       @modal-outer-clicked="showModal = false"
-      @modal-close-clicked="showModal = false">
+      @modal-close-clicked="showModal = false"
+      :title="modalDetails.title"
+      :buttonsDirection="modalDetails.buttonsDirection"
+      :buttons="modalDetails.buttons">
       <div
-        v-if="modalHtml"
-        class="modal-slot"
-        v-html="modalHtml" />
+        v-if="modalDetails.html"
+        class="modal-module__slot"
+        v-html="modalDetails.html" />
     </ModalModule>
   </div>
 </template>
@@ -59,7 +62,12 @@ export default {
   data: () => ({
     className: 'store-manager',
     showModal: false,
-    modalHtml: '',
+    modalDetails: {
+      title: '',
+      html: '',
+      buttons: [],
+      buttonsDirection: 'horizontal',
+    },
   }),
 
   computed: {
@@ -69,14 +77,36 @@ export default {
   },
 
   methods: {
-    addSiteClicked() {
+    manageSitesClicked() {
       // this.$store.commit('addSite', { name: 'Test Site', url: '/test-site' });
 
-      this.modalHtml = `
-        <div class="modal-module__title">Modal Title</div>
+      this.modalDetails.title = 'Manage Sites';
+      this.modalDetails.html = `
+        How would you like to manage the sites?.
       `;
-
+      this.modalDetails.buttonsDirection = 'vertical';
+      this.modalDetails.buttons = [
+        {
+          text: 'Add Single Site',
+          // eslint-disable-next-line
+          onClick: () => { this.addSite('single'); },
+        },
+        {
+          text: 'Add Multiple Sites',
+          onClick: () => { this.addSite('multiple'); },
+        },
+      ];
       this.showModal = true;
+    },
+
+    addSite(amount) {
+      if (amount === 'single') {
+        // eslint-disable-next-line
+        alert('Add Single Site clicked.');
+      } else if (amount === 'multiple') {
+        // eslint-disable-next-line
+        alert('Add Multiple Sites clicked.');
+      }
     },
 
     updateStore(emitEvent) {

@@ -25,6 +25,16 @@ export default {
       name: 'home',
     });
   },
+
+  watch: {
+    $route: 'updateRoute',
+  },
+
+  methods: {
+    updateRoute() {
+      this.$store.commit('update__currentRoute', this.$route.name);
+    },
+  },
 };
 </script>
 
