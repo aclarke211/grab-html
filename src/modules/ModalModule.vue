@@ -186,6 +186,11 @@ export default {
     &:hover {
       background-color: lighten($color__btnPrimary, 10%),
     }
+
+    &:active {
+      transition: background-color .25s;
+      background-color: seagreen;
+    }
   }
 }
 </style>
