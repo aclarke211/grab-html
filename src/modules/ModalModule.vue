@@ -98,7 +98,7 @@ export default {
 
   &__inner {
     background-color: white;
-    padding: 3rem 2rem 1rem;
+    padding: 3rem 2rem 2rem;
     position: relative;
     display: flex;
     align-items: center;
