@@ -111,7 +111,7 @@ export default {
 
         this.modalDetails.title = 'Add Single Site';
         this.modalDetails.html = `
-          You are about to add a Single Site.
+          Please enter the site details.
         `;
         this.modalDetails.inputs = [
           {
