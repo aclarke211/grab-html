@@ -17,6 +17,19 @@
       <slot />
 
       <div
+        v-if="inputs.length"
+        :class="`${className}__inputs-container`">
+        <InputModule
+          v-for="(input, inputKey) in inputs"
+          :key="inputKey"
+          :label="input.label"
+          :value="input.value"
+          :direction="input.direction"
+          :editable="input.editable"
+          @value-changed="updateInputValue($event, inputKey)" />
+      </div>
+
+      <div
         v-if="buttons.length"
         :class="[`${className}__btns-container`, buttonsDirection]">
           <button
@@ -32,8 +45,14 @@
 </template>
 
 <script>
+import InputModule from '@/modules/InputModule.vue';
+
 export default {
   name: 'ModalModule',
+
+  components: {
+    InputModule,
+  },
 
   props: {
     showModal: {
@@ -49,6 +68,18 @@ export default {
     title: {
       type: String,
       default: 'Modal Title',
+    },
+
+    inputs: {
+      type: Array,
+      default: () => ([
+        {
+          label: 'Text Input',
+          value: 'Insert text',
+          direction: 'horizontal',
+          editable: true,
+        },
+      ]),
     },
 
     buttons: {
@@ -76,6 +107,17 @@ export default {
   data: () => ({
     className: 'modal-module',
   }),
+
+  methods: {
+    updateInputValue(emitEvent, inputKey) {
+      if (emitEvent.value === '') {
+        this.inputs[inputKey].value = ' ';
+
+      } else {
+        this.inputs[inputKey].value = emitEvent.value;
+      }
+    },
+  },
 };
 </script>
 

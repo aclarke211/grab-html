@@ -4,19 +4,19 @@
       <InputModule
         :label="findPropertyInStore('useCustomConfig', 'key').key"
         :value="findPropertyInStore('useCustomConfig', 'key').value"
-        @value-changed="updateStore($event)" />
+        @value-changed="updateStore($event, findPropertyInStore('useCustomConfig', 'key').key)" />
 
       <InputModule
         :label="findPropertyInStore('sites', 'key').key"
         :value="findPropertyInStore('sites', 'key').value"
-        @value-changed="updateStore($event)"
+        @value-changed="updateStore($event, findPropertyInStore('sites', 'key').key)"
         @remove-array-item="removeArrayItemFromStore($event)" />
 
       <InputModule
         :label="findPropertyInStore('currentRoute', 'key').key"
         :value="findPropertyInStore('currentRoute', 'key').value"
         :editable="false"
-        @value-changed="updateStore($event)"
+        @value-changed="updateStore($event, findPropertyInStore('currentRoute', 'key').key)"
       />
     </div>
 
@@ -37,6 +37,7 @@
       @modal-outer-clicked="showModal = false"
       @modal-close-clicked="showModal = false"
       :title="modalDetails.title"
+      :inputs="modalDetails.inputs"
       :buttonsDirection="modalDetails.buttonsDirection"
       :buttons="modalDetails.buttons">
       <div
@@ -65,6 +66,7 @@ export default {
     modalDetails: {
       title: '',
       html: '',
+      inputs: [],
       buttons: [],
       buttonsDirection: 'horizontal',
     },
@@ -85,6 +87,7 @@ export default {
         How would you like to manage the sites?
       `;
       this.modalDetails.buttonsDirection = 'vertical';
+      this.modalDetails.inputs = [];
       this.modalDetails.buttons = [
         {
           text: 'Add Single Site',
@@ -102,15 +105,41 @@ export default {
     addSite(amount) {
       if (amount === 'single') {
         // eslint-disable-next-line
-        alert('Add Single Site clicked.');
+        // alert('Add Single Site clicked.');
+
+        const site = {};
+
+        this.modalDetails.title = 'Add Single Site';
+        this.modalDetails.html = `
+          You are about to add a Single Site.
+        `;
+        this.modalDetails.inputs = [
+          {
+            label: 'Site Name',
+            value: 'Name of the site',
+            direction: 'horizontal',
+            editable: true,
+          },
+        ];
+        this.modalDetails.buttons = [
+          {
+            text: 'Add Site',
+            onClick: () => {
+              this.$store.commit('addSite', site);
+              this.showModal = false;
+            },
+          },
+        ];
       } else if (amount === 'multiple') {
         // eslint-disable-next-line
         alert('Add Multiple Sites clicked.');
       }
     },
 
-    updateStore(emitEvent) {
-      this.$store.commit(`update__${emitEvent.key}`, emitEvent.value);
+    updateStore(emitEvent, key) {
+      if (emitEvent.key === key) {
+        this.$store.commit(`update__${emitEvent.key}`, emitEvent.value);
+      }
     },
 
     removeArrayItemFromStore(emitEvent) {

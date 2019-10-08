@@ -46,6 +46,7 @@
             :key="propertyKey">
             <p :class="`${className}__input__text`">{{ property }}</p>
             <div
+              v-if="editable"
               :class="`${className}__input__delete-btn`"
               title="Delete"
               v-html="'&#215;'"
@@ -114,11 +115,13 @@ export default {
   }),
 
   watch: {
-    value() {
-      this.$emit('value-changed', {
-        key: this.label,
-        value: this.value,
-      });
+    value(newValue, oldValue) {
+      if (this.editable && (newValue !== oldValue)) {
+        this.$emit('value-changed', {
+          key: this.label,
+          value: newValue,
+        });
+      }
     },
   },
 };
