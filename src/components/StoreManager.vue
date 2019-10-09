@@ -107,12 +107,13 @@ export default {
         // eslint-disable-next-line
         // alert('Add Single Site clicked.');
 
-        const site = {};
+        let site = {};
 
         this.modalDetails.title = 'Add Single Site';
         this.modalDetails.html = `
           Please enter the site details.
         `;
+
         this.modalDetails.inputs = [
           {
             label: 'Site Name',
@@ -120,11 +121,37 @@ export default {
             direction: 'horizontal',
             editable: true,
           },
+          {
+            label: 'Description',
+            value: ' ',
+            direction: 'horizontal',
+            editable: true,
+          },
+          {
+            label: 'URL',
+            value: ' ',
+            direction: 'horizontal',
+            editable: true,
+          },
+          {
+            label: 'Icon',
+            value: ' ',
+            direction: 'horizontal',
+            editable: true,
+          },
         ];
+
         this.modalDetails.buttons = [
           {
             text: 'Add Site',
             onClick: () => {
+              site = {
+                name: this.modalDetails.inputs[0].value,
+                description: this.modalDetails.inputs[1].value,
+                url: this.modalDetails.inputs[2].value,
+                icon: this.modalDetails.inputs[3].value,
+              };
+
               this.$store.commit('addSite', site);
               this.showModal = false;
             },

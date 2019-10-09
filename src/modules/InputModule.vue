@@ -148,6 +148,9 @@ export default {
   }
 
   &__label {
+      font-size: 1rem;
+      flex: 1;
+
     &::after {
       content: ':';
       margin-right: 1rem;
@@ -155,6 +158,8 @@ export default {
   }
 
   &__input {
+    flex: 1;
+
     &__array {
       display: flex;
       align-items: flex-start;
@@ -168,6 +173,12 @@ export default {
 
     &__text {
       margin-right: 1rem;
+
+      input {
+        outline: none;
+        font-size: .75rem;
+        padding: .5rem;
+      }
     }
 
     &__delete-btn {
