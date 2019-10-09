@@ -22,10 +22,13 @@
         <InputModule
           v-for="(input, inputKey) in inputs"
           :key="inputKey"
-          :label="input.label"
-          :value="input.value"
-          :direction="input.direction"
-          :editable="input.editable"
+          :hideLabel="input.hideLabel || false"
+          :label="input.label || 'Default Label'"
+          :hideValue="input.hideValue || false"
+          :value="input.value || 'Default Value'"
+          :direction="input.direction || 'horizontal'"
+          :editable="input.editable || true"
+          :labelUnderline="input.labelUnderline || false"
           @value-changed="updateInputValue($event, inputKey)" />
       </div>
 

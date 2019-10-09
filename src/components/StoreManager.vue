@@ -116,28 +116,46 @@ export default {
 
         this.modalDetails.inputs = [
           {
+            label: 'General',
+            hideValue: true,
+            labelUnderline: true,
+          },
+          {
             label: 'Site Name',
             value: ' ',
-            direction: 'horizontal',
-            editable: true,
           },
           {
-            label: 'Description',
+            label: 'Site Description',
             value: ' ',
-            direction: 'horizontal',
-            editable: true,
           },
           {
-            label: 'URL',
+            label: 'Site URL',
             value: ' ',
-            direction: 'horizontal',
-            editable: true,
           },
           {
-            label: 'Icon',
+            label: 'Site Icon',
             value: ' ',
-            direction: 'horizontal',
-            editable: true,
+          },
+          {
+            label: 'Identifiers',
+            hideValue: true,
+            labelUnderline: true,
+          },
+          {
+            label: 'Item',
+            value: ' ',
+          },
+          {
+            label: 'Item Title',
+            value: ' ',
+          },
+          {
+            label: 'Body Text',
+            value: ' ',
+          },
+          {
+            label: 'Buttons',
+            value: ' ',
           },
         ];
 
@@ -146,10 +164,16 @@ export default {
             text: 'Add Site',
             onClick: () => {
               site = {
-                name: this.modalDetails.inputs[0].value,
-                description: this.modalDetails.inputs[1].value,
-                url: this.modalDetails.inputs[2].value,
-                icon: this.modalDetails.inputs[3].value,
+                name: this.modalDetails.inputs[1].value,
+                description: this.modalDetails.inputs[2].value,
+                url: this.modalDetails.inputs[3].value,
+                icon: this.modalDetails.inputs[4].value,
+                identifiers: {
+                  items: this.modalDetails.inputs[6].value,
+                  title: this.modalDetails.inputs[7].value,
+                  bodyText: this.modalDetails.inputs[8].value,
+                  buttons: this.modalDetails.inputs[9].value,
+                },
               };
 
               this.$store.commit('addSite', site);

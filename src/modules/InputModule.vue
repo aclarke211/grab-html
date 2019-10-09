@@ -1,12 +1,13 @@
 <template>
   <div :class="[className, direction]">
     <label
-      :class="`${className}__label`"
+      v-if="!hideLabel"
+      :class="[`${className}__label`, {'underline': labelUnderline}]"
       :for="uniqueId"
       v-html="label"/>
 
       <div
-        v-if="inputType === types.string"
+        v-if="inputType === types.string && !hideValue"
         :class="[`${className}__input`, `${className}__input__${inputType}`]">
         <input
           v-if="editable"
@@ -22,7 +23,7 @@
       </div>
 
       <div
-        v-if="inputType === types.boolean"
+        v-if="inputType === types.boolean && !hideValue"
         :class="[`${className}__input`, `${className}__input__${inputType}`]">
         <input
           v-if="editable"
@@ -38,7 +39,7 @@
       </div>
 
       <div
-        v-if="inputType === types.array"
+        v-if="inputType === types.array && !hideValue"
         :class="[`${className}__input`, `${className}__input__${inputType}`]">
           <div
             :class="`${className}__input__array-item`"
@@ -83,6 +84,21 @@ export default {
     editable: {
       type: Boolean,
       default: true,
+    },
+
+    hideLabel: {
+      type: Boolean,
+      default: false,
+    },
+
+    hideValue: {
+      type: Boolean,
+      default: false,
+    },
+
+    labelUnderline: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -150,6 +166,13 @@ export default {
   &__label {
       font-size: 1rem;
       flex: 1;
+
+    &.underline {
+      // flex: unset;
+      border-bottom: 2px solid black;
+      padding: .25rem;
+      margin: 1rem 0 .5rem;
+    }
 
     &::after {
       content: ':';
