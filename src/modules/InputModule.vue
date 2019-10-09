@@ -116,10 +116,14 @@ export default {
 
   watch: {
     value(newValue, oldValue) {
+      let val = newValue;
       if (this.editable && (newValue !== oldValue)) {
+        if (typeof newValue === 'string' && (newValue !== '' && newValue !== ' ')) {
+          val = newValue.trim();
+        }
         this.$emit('value-changed', {
           key: this.label,
-          value: newValue,
+          value: val,
         });
       }
     },

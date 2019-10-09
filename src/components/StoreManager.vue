@@ -116,7 +116,7 @@ export default {
         this.modalDetails.inputs = [
           {
             label: 'Site Name',
-            value: 'Name of the site',
+            value: ' ',
             direction: 'horizontal',
             editable: true,
           },
