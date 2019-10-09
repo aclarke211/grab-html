@@ -6,7 +6,7 @@
 
       <Scraper
         :siteUrl="$store.state.sites[0].url"
-        :itemsIdentifier="$store.state.sites[0].items.identifier" />
+        :itemsIdentifier="$store.state.sites[0].identifiers.items" />
   </div>
 </template>
 
