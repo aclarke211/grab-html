@@ -13,12 +13,14 @@ const store = new Vuex.Store({
         description: 'News stories from the UK and The Rest of the World',
         url: 'https://news.sky.com/',
         icon: './assets/icons/sky-news-icon.png',
+        category: 'News',
         identifiers: {
           items: '.sdc-site-tiles__item',
         },
       },
     ],
     currentRoute: 'home',
+    currentModalView: 'none',
   },
 
   getters: {
@@ -40,6 +42,10 @@ const store = new Vuex.Store({
 
     update__currentRoute(state, route) {
       state.currentRoute = route;
+    },
+
+    update__currentModalView(state, modalView) {
+      state.currentModalView = modalView;
     },
   },
 

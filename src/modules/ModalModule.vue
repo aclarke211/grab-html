@@ -17,22 +17,6 @@
       <slot />
 
       <div
-        v-if="inputs.length"
-        :class="`${className}__inputs-container`">
-        <InputModule
-          v-for="(input, inputKey) in inputs"
-          :key="inputKey"
-          :hideLabel="input.hideLabel || false"
-          :label="input.label || 'Default Label'"
-          :hideValue="input.hideValue || false"
-          :value="input.value || 'Default Value'"
-          :direction="input.direction || 'horizontal'"
-          :editable="input.editable || true"
-          :labelUnderline="input.labelUnderline || false"
-          @value-changed="updateInputValue($event, inputKey)" />
-      </div>
-
-      <div
         v-if="buttons.length"
         :class="[`${className}__btns-container`, buttonsDirection]">
           <button
@@ -73,18 +57,6 @@ export default {
       default: 'Modal Title',
     },
 
-    inputs: {
-      type: Array,
-      default: () => ([
-        {
-          label: 'Text Input',
-          value: 'Insert text',
-          direction: 'horizontal',
-          editable: true,
-        },
-      ]),
-    },
-
     buttons: {
       type: Array,
       default: () => ([
@@ -110,17 +82,6 @@ export default {
   data: () => ({
     className: 'modal-module',
   }),
-
-  methods: {
-    updateInputValue(emitEvent, inputKey) {
-      if (emitEvent.value === '') {
-        this.inputs[inputKey].value = ' ';
-
-      } else {
-        this.inputs[inputKey].value = emitEvent.value;
-      }
-    },
-  },
 };
 </script>
 

@@ -21,6 +21,7 @@ export default {
 
   created() {
     this.$store.commit('update__currentRoute', 'home');
+    this.$store.commit('update__currentModalView', 'none');
     this.$router.push({
       name: 'home',
     });
