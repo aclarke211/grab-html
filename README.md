@@ -1,4 +1,4 @@
-# site-scraper
+# Grab HTML
 
 Based on the following tutorial: https://pusher.com/tutorials/web-scraper-node
 
